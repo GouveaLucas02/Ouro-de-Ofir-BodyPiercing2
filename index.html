@@ -21,7 +21,6 @@ background:#ffffff;
 color:#000000;
 }
 
-/* HEADER */
 header{
 position:fixed;
 top:0;
@@ -56,7 +55,6 @@ nav a:hover{
 color:#d4af37;
 }
 
-/* HERO */
 .hero{
 height:100vh;
 display:flex;
@@ -100,7 +98,6 @@ background:#d4af37;
 color:#000000;
 }
 
-/* SECTIONS */
 section{
 padding:100px 20px;
 max-width:1100px;
@@ -115,7 +112,6 @@ color:#000000;
 margin-bottom:40px;
 }
 
-/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -137,6 +133,8 @@ transform:translateY(-6px);
 width:100%;
 height:220px;
 object-fit:cover;
+display:block;
+background:#f5f0e1;
 }
 
 .card-content{
@@ -149,7 +147,6 @@ color:#000000;
 font-size:18px;
 }
 
-/* FILTERS */
 .filters{
 text-align:center;
 margin-bottom:30px;
@@ -169,7 +166,6 @@ color:#333;
 color:#d4af37;
 }
 
-/* FORM */
 form{
 display:flex;
 flex-direction:column;
@@ -190,7 +186,6 @@ min-height:100px;
 resize:none;
 }
 
-/* WHATSAPP */
 .whatsapp{
 position:fixed;
 bottom:25px;
@@ -219,14 +214,12 @@ text-decoration:none;
 </nav>
 </header>
 
-<!-- HERO -->
 <div class="hero">
 <h2>Ouro De Ofir & Body Piercing</h2>
 <p>Peças em ouro e prata selecionadas + body piercing profissional com estética refinada e técnica precisa.</p>
 <a href="#agendamento"><button class="btn">Agendar atendimento</button></a>
 </div>
 
-<!-- CATALOG -->
 <section id="ouro">
 <h2 class="title">Coleção</h2>
 
@@ -250,24 +243,23 @@ text-decoration:none;
 </div>
 
 <div class="card item piercing">
-<img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033" alt="Helix piercing">
+<img src="https://z-cdn-media.chatglm.cn/files/13673578-8312-4626-85df-c245b1f201d2.jpeg?auth_key=1882422218-0fca2220fde546a5b3d511937f9a02e7-0-eb364cb1a7166cbf1f3116273c5d3135" alt="Lóbulo Piercing">
+<div class="card-content"><h3>Lóbulo Piercing</h3></div>
+</div>
+
+<div class="card item piercing">
+<img src="https://z-cdn-media.chatglm.cn/files/196f9f28-cd47-4863-bcba-4285fd00ffc6.jpeg?auth_key=1882422218-ca5607f1fc7641f399eb10e7f7cd21d1-0-b69ab9859eaf0291664cafa13433063a" alt="Nostril Piercing">
+<div class="card-content"><h3>Nostril Piercing</h3></div>
+</div>
+
+<div class="card item piercing">
+<img src="https://z-cdn-media.chatglm.cn/files/92e308f4-ea93-412d-8ec1-4f260eb66ae6.jpeg?auth_key=1882422218-61803bbd62d146feb278bc268f863d4d-0-17c41832e9955ba463ab8d8d767bbadf" alt="Helix Piercing">
 <div class="card-content"><h3>Helix Piercing</h3></div>
-</div>
-
-<div class="card item piercing">
-<img src="https://images.unsplash.com/photo-1617038260897-3e3b7b2b6b5c" alt="Tragus piercing">
-<div class="card-content"><h3>Tragus Piercing</h3></div>
-</div>
-
-<div class="card item piercing">
-<img src="https://images.unsplash.com/photo-1621786030486-4c6f9b7f7b4b" alt="Septum piercing">
-<div class="card-content"><h3>Septum Piercing</h3></div>
 </div>
 
 </div>
 </section>
 
-<!-- FORM -->
 <section id="agendamento">
 <h2 class="title">Agendamento</h2>
 
@@ -280,6 +272,7 @@ text-decoration:none;
 <option>Nostril</option>
 <option>Septum</option>
 <option>Tragus</option>
+<option>Lóbulo</option>
 </select>
 
 <textarea id="msg" placeholder="Observações"></textarea>
@@ -292,10 +285,21 @@ text-decoration:none;
 
 <script>
 function filter(type){
-let items=document.querySelectorAll('.item');
-items.forEach(el=>{
-el.style.display = (type==='all' || el.classList.contains(type)) ? 'block' : 'none';
+let items = document.querySelectorAll('.item');
+items.forEach(el => {
+el.style.display = (type === 'all' || el.classList.contains(type)) ? 'block' : 'none';
 });
+}
+
+function sendWhatsApp(e){
+e.preventDefault();
+const nome = document.getElementById('nome').value;
+const data = document.getElementById('data').value;
+const tipo = document.getElementById('tipo').value;
+const msg  = document.getElementById('msg').value;
+const texto = 'Olá! Gostaria de agendar:\n\nNome: ' + nome + '\nData: ' + data + '\nTipo: ' + tipo + '\nObs: ' + msg;
+const url = 'https://wa.me/5544984090875?text=' + encodeURIComponent(texto);
+window.open(url, '_blank');
 }
 </script>
 
